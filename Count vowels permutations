@@ -1,0 +1,16 @@
+class Solution:
+    def countVowelPermutation(self, n: int) -> int:
+        count = [1] * 5
+        mod = 1000000007
+        
+        for _ in range(n - 1):
+            count = [
+                (count[1] + count[2] + count[4]) % mod,
+                (count[0] + count[2]) % mod,
+                (count[1] + count[3]) % mod,
+                count[2] % mod,
+                (count[2] + count[3]) % mod
+            ]
+        
+        return sum(count) % mod
+        
