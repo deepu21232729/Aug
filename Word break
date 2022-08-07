@@ -1,0 +1,18 @@
+class Solution:
+    def wordBreak(self, s: str, wordDict: List[str]) -> bool:
+        visited = set()
+        def wordbreak(s):
+            if not s or s in wordDict:
+                return True
+            elif s in visited:
+                return
+            visited.add(s)
+            curr_str = s[:]
+            for i in range(len(s)):
+                curr_str = curr_str[:-1]
+                if curr_str in wordDict and wordbreak(s[-1-i:]):
+                        return True
+            return False
+        
+        return wordbreak(s)
+        
